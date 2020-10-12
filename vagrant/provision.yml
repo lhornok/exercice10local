@@ -1,0 +1,9 @@
+---
+- hosts: elkstack
+  user: vagrant
+  become: yes
+  roles:
+    - role : nginxinc.nginx
+    - role : andrewrothstein.openjdk
+      openjdk_app: jdk
+    - role : elastic.elasticsearch
