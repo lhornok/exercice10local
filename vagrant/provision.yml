@@ -4,10 +4,14 @@
   become: yes
   roles:
     - role : nginxinc.nginx
+    - role : nephelaiio.metricbeat
     - role : elastic.elasticsearch
     - role : elastic.beats
     - role : geerlingguy.kibana
   vars:
+    metricbeat_conf_nginx_hosts:
+      - http://127.0.0.1
+    metricbeat_conf_nginx_status_path: nginx_status
     es_data_dirs:
       - "/opt/elasticsearch/data"
     es_log_dir: "/opt/elasticsearch/logs"
@@ -27,7 +31,7 @@
           roles:
             - power_user
             - user
-    beats_version: 7.0.0
+    beats_version: 7.9.2
     beat: filebeat
     beat_conf:
       inputs:
